@@ -62,7 +62,6 @@ def create_session():
 # =========================================================
 def get_fsk(cookies):
     conn = http.client.HTTPSConnection(BASE_HOST, timeout=120)
-
     fs = f"0.{random.randint(10_000_000, 99_999_999)}"
 
     headers = {
@@ -84,11 +83,11 @@ def get_fsk(cookies):
     res = conn.getresponse()
 
     data = json.loads(res.read().decode())
-    print(data)
+    # print(data)
 
     if "key" not in data:
         raise Exception("❌ FSK not found")
-    print(data["key"])
+    # print(data["key"])
     return data["key"]
 
 
@@ -96,7 +95,7 @@ def get_fsk(cookies):
 # FETCH HISTORICAL DATA
 # =========================================================
 def fetch_history(symbol, resolution, fsk, cookies):
-    print(resolution)
+    # print(resolution)
     conn = http.client.HTTPSConnection('nepsealpha.com')
     headers = {
         'Referer': 'https://nepsealpha.com/trading/chart',
